@@ -10,8 +10,8 @@ namespace GWVACB_HFT_2023241.Repository.Interfaces
     {
         void Create(T entity);
         void Update(T entity);
-        void Delete(T entity);
-        T GetById(int id);
+        void Delete(int id);
+        T Read(int id);
         IQueryable<T> GetAll();
     }
 }

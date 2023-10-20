@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GWVACB_HFT_2023241.Repository;
+using System;
+using System.Linq;
 
 namespace GWVACB_HFT_2023241.Client
 {
@@ -6,7 +8,7 @@ namespace GWVACB_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
         }
     }
 }
