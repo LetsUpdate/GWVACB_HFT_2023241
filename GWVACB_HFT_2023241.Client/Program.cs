@@ -1,4 +1,6 @@
-﻿using GWVACB_HFT_2023241.Repository;
+﻿using GWVACB_HFT_2023241.Models;
+using GWVACB_HFT_2023241.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GWVACB_HFT_2023241.Repository.Interfaces
+namespace GWVACB_HFT_2023241.Repository
 {
-    internal interface IRepository<T>
+    public interface IRepository<T>
     {
         void Create(T entity);
         void Update(T entity);

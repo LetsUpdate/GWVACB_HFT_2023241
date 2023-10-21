@@ -24,5 +24,10 @@ namespace GWVACB_HFT_2023241.Models
         public virtual User User { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public override string ToString()
+        {
+            return "NoteId: " + NoteId + ", Content: " + Content + ", UserId: " + UserId;
+        }
     }
 }
