@@ -13,7 +13,7 @@ namespace GWVACB_HFT_2023241.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
-
+        
         [Required]
         [StringLength(16, MinimumLength = 3)]
         public string Username { get; set; }
