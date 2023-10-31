@@ -16,8 +16,10 @@ namespace GWVACB_HFT_2023241.Logic
         
         public void Create(User user)
         {
+            if(user.Username.Length<3)
+                throw new ArgumentException("Username must be at least 3 characters long");
             if( repo.GetAll().Select(u => u.Username).Contains(user.Username))
-                throw new Exception("Username already exists");
+                throw new ArgumentException("Username already exists");
             repo.Create(user);
         }
         public User GetByName(string username)
@@ -36,6 +38,11 @@ namespace GWVACB_HFT_2023241.Logic
         public void Delete(int id)
         {
             repo.Delete(id);
+        }
+
+        public IQueryable<User> GetAll()
+        {
+            return repo.GetAll();
         }
     }
 }

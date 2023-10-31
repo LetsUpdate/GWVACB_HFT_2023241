@@ -1,3 +1,4 @@
+using System.Linq;
 using GWVACB_HFT_2023241.Models;
 using GWVACB_HFT_2023241.Repository;
 
@@ -26,6 +27,11 @@ namespace GWVACB_HFT_2023241.Logic
             public void Delete(int id)
             {
                 repo.Delete(id);
+            }
+
+            public IQueryable<Note> GetAll()
+            {
+                return repo.GetAll();
             }
     }
 }

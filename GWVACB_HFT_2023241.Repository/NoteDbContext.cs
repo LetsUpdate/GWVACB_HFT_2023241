@@ -52,9 +52,9 @@ namespace GWVACB_HFT_2023241.Repository
 
             modelBuilder.Entity<User>().HasData(new User[]
             {
-                new User { UserId = 1, Username = "admin", Password = "admin" },
-                new User { UserId = 2, Username = "red", Password = "none" },
-                new User { UserId = 3, Username = "Jozsi", Password = "halott" }
+                new User { UserId = 1, Username = "admin", Age = 10, School = "BME", Country = "Hungary"},
+                new User { UserId = 2, Username = "red", Age = 20, School = "OE", Country = "Hungary"},
+                new User { UserId = 3, Username = "Jozsi", Age  = 21, School = "SOTE", Country = "Hungary"}
             });
             //kreatív Jegyzetek kereatív nevekkel
             modelBuilder.Entity<Note>().HasData(new Note[]
