@@ -8,8 +8,22 @@ using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public class User
+    public sealed class User
     {
+        public User(int userId, string username, int age, string school, string country)
+        {
+            UserId = userId;
+            Username = username;
+            Age = age;
+            School = school;
+            Country = country;
+        }
+
+        public User()
+        {
+        }
+
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
@@ -25,8 +39,7 @@ namespace GWVACB_HFT_2023241.Models
         [StringLength(16, MinimumLength = 2)]
         public string Country { get; set; }
         
-        public virtual ICollection<Note> Notes { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<Note> Notes { get; set; }
+        
     }
 }

@@ -8,8 +8,21 @@ using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public class Note
+    public sealed class Note
     {
+        
+        public Note()
+        {
+        }
+
+        public Note(int noteId, int userId,string content,int locationId)
+        {
+            NoteId = noteId;
+            Content = content;
+            UserId = userId;
+            LocationId = locationId;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NoteId { get; set; }
@@ -21,9 +34,10 @@ namespace GWVACB_HFT_2023241.Models
         [Required]
         [ForeignKey(nameof(User))]
         public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public int LocationId { get; set; }
+        public User User { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public Location Location { get; set; }
 
         public override string ToString()
         {
