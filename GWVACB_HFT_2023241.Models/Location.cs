@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public sealed class Location
+    public  class Location
     {
         public Location(int locationId,string country, string street, double avgTemp, string description)
         {
@@ -34,7 +35,8 @@ namespace GWVACB_HFT_2023241.Models
         [StringLength(128)]
         public string Description { get; set; }
 
-        public ICollection<Note> Notes{get;set;}
+        [JsonIgnore]
+        public virtual ICollection<Note> Notes{get;set;}
 
 
     }

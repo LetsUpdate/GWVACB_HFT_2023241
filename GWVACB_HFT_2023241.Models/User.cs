@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public sealed class User
+    public  class User
     {
         public User(int userId, string username, int age, string school, string country)
         {
@@ -38,8 +39,8 @@ namespace GWVACB_HFT_2023241.Models
         public string School { get; set; }
         [StringLength(16, MinimumLength = 2)]
         public string Country { get; set; }
-        
-        public ICollection<Note> Notes { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Note> Notes { get; set; }
         
     }
 }

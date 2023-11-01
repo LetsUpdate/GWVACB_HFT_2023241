@@ -7,6 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GWVACB_HFT_2023241.Logic;
+using GWVACB_HFT_2023241.Models;
+using GWVACB_HFT_2023241.Repository;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.OpenApi.Models;
 
 namespace GWVACB_HFT_2023241.Endpoint
 {
@@ -16,6 +21,16 @@ namespace GWVACB_HFT_2023241.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<NoteDbContext>();
+            services.AddTransient<IRepository<User>, UserRepository>();
+
+            services.AddTransient<IUserLogic, UserLogic>();
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",new OpenApiInfo{Title = "NoteDBApp.Endpoint", Version = "v1"});
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,16 +39,29 @@ namespace GWVACB_HFT_2023241.Endpoint
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MovieDbApp.Endpoint v1"));
             }
 
             app.UseRouting();
 
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { Msg = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
+
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }

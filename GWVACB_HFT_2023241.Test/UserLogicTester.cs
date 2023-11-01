@@ -50,6 +50,19 @@ namespace GWVACB_HFT_2023241.Test
             mockUserRepo.Verify(m=>m.Create(user), Times.Once);
         }
         [Test]
+        public void CreateUserWithShortName()
+        {
+            var user = new User { Username = "Pi", Age = 21, School = "SOTE", Country = "Hungary" };
+            Assert.Throws<ArgumentException>(() => ul.Create(user));
+        }
+
+        [Test]
+        public void CreateUserWithDifrentCases()
+        {
+            var user =new User { UserId = 1, Username = "aDMIn", Age = 10, School = "BME", Country = "Hungary" };
+            Assert.Throws<ArgumentException>(() => ul.Create(user));
+        }
+        [Test]
         public void GetByNameTest()
         {
             var user = ul.GetByName("admin");
