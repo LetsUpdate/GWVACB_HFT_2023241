@@ -40,24 +40,6 @@ namespace GWVACB_HFT_2023241.Logic
             return repo.GetAll();
         }
 
-        public int GetAvgNoteLenght()
-        {
-            return (int)GetAll().Average(note => note.Content.Length);
-        }
 
-        public List<Note> GetNotesByUserName(string username)
-        {
-            return GetAll().Where(note => note.User.Username == username).ToList();
-        }
-
-        public List<Note> GetNotesWhereContentContains(string content)
-        {
-            return GetAll().Where(note => note.Content.Contains(content, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
-
-        public List<Note> GetMostPerformingUserNotes()
-        {
-            return GetAll().GroupBy(n => n.UserId).OrderByDescending(g => g.Count()).First().ToList();
-        }
     }
 }

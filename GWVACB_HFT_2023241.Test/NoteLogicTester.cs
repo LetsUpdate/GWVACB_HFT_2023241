@@ -51,12 +51,5 @@ namespace GWVACB_HFT_2023241.Test
             logic.Create(note);
             mockNoteRepo.Verify(m => m.Create(note), Times.Once);
         }
-
-        [Test]
-        public void SearchInNotes()
-        {
-            var notes = logic.GetNotesWhereContentContains("Loss");
-            Assert.AreEqual(1, notes.Count);
-        }
     }
 }
