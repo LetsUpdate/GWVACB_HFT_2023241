@@ -7,49 +7,50 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class LocationController : ControllerBase
     {
-        private readonly IUserLogic _logic;
+        private readonly ILocationLogic _logic;
 
-        public UserController(IUserLogic logic)
+        public LocationController(ILocationLogic logic)
         {
             _logic = logic;
         }
 
-        // GET: api/User
+        // GET: api/Location
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<Location> Get()
         {
             return _logic.GetAll();
         }
 
-        // GET: api/User/5
+        // GET: api/Location/5
         [HttpGet("{id}")]
-        public User Get(int id)
+        public Location Get(int id)
         {
             return _logic.GetById(id);
         }
 
 
-        // POST: api/User
+        // POST: api/Location
         [HttpPost]
-        public void Create([FromBody] User user)
+        public void Create([FromBody] Location user)
         {
             _logic.Create(user);
         }
 
-        // PUT: api/User/5
+        // PUT: api/Location/5
         [HttpPut]
-        public void Update([FromBody] User u)
+        public void Update([FromBody] Location u)
         {
             _logic.Update(u);
         }
 
-        // DELETE: api/User/5
+        // DELETE: api/Location/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             _logic.Delete(id);
         }
     }
+    
 }

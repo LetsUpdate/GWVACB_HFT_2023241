@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace GWVACB_HFT_2023241.Client
 {
     public class RestService
     {
-        HttpClient client;
+        private HttpClient client;
 
         public RestService(string baseurl, string pingableEndpoint = "swagger")
         {
-            bool isOk = false;
+            var isOk = false;
             do
             {
                 isOk = Ping(baseurl + pingableEndpoint);
             } while (isOk == false);
+
             Init(baseurl);
         }
 
@@ -26,7 +25,7 @@ namespace GWVACB_HFT_2023241.Client
         {
             try
             {
-                WebClient wc = new WebClient();
+                var wc = new WebClient();
                 wc.DownloadData(url);
                 return true;
             }
@@ -42,8 +41,8 @@ namespace GWVACB_HFT_2023241.Client
             client.BaseAddress = new Uri(baseurl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue
-                ("application/json"));
+                new MediaTypeWithQualityHeaderValue
+                    ("application/json"));
             try
             {
                 client.GetAsync("").GetAwaiter().GetResult();
@@ -52,13 +51,12 @@ namespace GWVACB_HFT_2023241.Client
             {
                 throw new ArgumentException("Endpoint is not available!");
             }
-
         }
 
         public List<T> Get<T>(string endpoint)
         {
-            List<T> items = new List<T>();
-            HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
+            var items = new List<T>();
+            var response = client.GetAsync(endpoint).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
                 items = response.Content.ReadAsAsync<List<T>>().GetAwaiter().GetResult();
@@ -68,13 +66,14 @@ namespace GWVACB_HFT_2023241.Client
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
                 throw new ArgumentException(error.Msg);
             }
+
             return items;
         }
 
         public T GetSingle<T>(string endpoint)
         {
-            T item = default(T);
-            HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
+            var item = default(T);
+            var response = client.GetAsync(endpoint).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
                 item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
@@ -84,13 +83,14 @@ namespace GWVACB_HFT_2023241.Client
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
                 throw new ArgumentException(error.Msg);
             }
+
             return item;
         }
 
         public T Get<T>(int id, string endpoint)
         {
-            T item = default(T);
-            HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            var item = default(T);
+            var response = client.GetAsync(endpoint + "/" + id).GetAwaiter().GetResult();
             if (response.IsSuccessStatusCode)
             {
                 item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
@@ -100,12 +100,13 @@ namespace GWVACB_HFT_2023241.Client
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
                 throw new ArgumentException(error.Msg);
             }
+
             return item;
         }
 
         public void Post<T>(T item, string endpoint)
         {
-            HttpResponseMessage response =
+            var response =
                 client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
 
             if (!response.IsSuccessStatusCode)
@@ -113,13 +114,14 @@ namespace GWVACB_HFT_2023241.Client
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
                 throw new ArgumentException(error.Msg);
             }
+
             response.EnsureSuccessStatusCode();
         }
 
         public void Delete(int id, string endpoint)
         {
-            HttpResponseMessage response =
-                client.DeleteAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
+            var response =
+                client.DeleteAsync(endpoint + "/" + id).GetAwaiter().GetResult();
 
             if (!response.IsSuccessStatusCode)
             {
@@ -132,7 +134,7 @@ namespace GWVACB_HFT_2023241.Client
 
         public void Put<T>(T item, string endpoint)
         {
-            HttpResponseMessage response =
+            var response =
                 client.PutAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
 
             if (!response.IsSuccessStatusCode)
@@ -143,14 +145,10 @@ namespace GWVACB_HFT_2023241.Client
 
             response.EnsureSuccessStatusCode();
         }
-
     }
+
     public class RestExceptionInfo
     {
-        public RestExceptionInfo()
-        {
-
-        }
         public string Msg { get; set; }
     }
 }

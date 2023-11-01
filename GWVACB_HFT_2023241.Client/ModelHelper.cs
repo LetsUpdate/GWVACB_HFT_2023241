@@ -9,47 +9,35 @@ namespace GWVACB_HFT_2023241.Client
     {
         private static object _RecordObject(Type t)
         {
-            object instance = Activator.CreateInstance(t);
+            var instance = Activator.CreateInstance(t);
             foreach (var item in t.GetProperties())
             {
-                if(item.Name.ToLower().Contains(t.Name.ToLower()+"id"))
-                {
-                    continue;
-                }
+                if (item.Name.ToLower().Contains(t.Name.ToLower() + "id")) continue;
                 //if itm is virtual continue
-                if (item.GetGetMethod()!=null && item.GetGetMethod()!.IsVirtual)
-                {
-                    continue;
-                }
-                
+                if (item.GetGetMethod() != null && item.GetGetMethod()!.IsVirtual) continue;
+
                 var attr = item.GetCustomAttribute<DisplayNameAttribute>();
                 if (attr != null)
-                {
                     Console.Write(attr.DisplayName + ": ");
-                }
                 else
-                {
                     Console.Write($"Enter {item.Name} value: ");
-                }
 
-                
 
-                string result = Console.ReadLine();
-                
+                var result = Console.ReadLine();
+
                 if (item.PropertyType == typeof(string))
                 {
                     item.SetValue(instance, result);
                 }
                 else
                 {
-                    Type propType = item.PropertyType;
+                    var propType = item.PropertyType;
                     var parseMethod = propType.GetMethods().First(t => t.Name.Contains("Parse"));
                     var converted = parseMethod.Invoke(null, new object[] { result });
                     item.SetValue(instance, converted);
                 }
-                
-                
             }
+
             return instance;
         }
 

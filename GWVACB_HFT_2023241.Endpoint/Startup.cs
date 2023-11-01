@@ -1,16 +1,12 @@
+using GWVACB_HFT_2023241.Logic;
+using GWVACB_HFT_2023241.Models;
+using GWVACB_HFT_2023241.Repository;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GWVACB_HFT_2023241.Logic;
-using GWVACB_HFT_2023241.Models;
-using GWVACB_HFT_2023241.Repository;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.OpenApi.Models;
 
 namespace GWVACB_HFT_2023241.Endpoint
@@ -22,15 +18,21 @@ namespace GWVACB_HFT_2023241.Endpoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<NoteDbContext>();
-            services.AddTransient<IRepository<User>, UserRepository>();
 
+            services.AddTransient<IRepository<User>, UserRepository>();
             services.AddTransient<IUserLogic, UserLogic>();
+            
+            services.AddTransient<IRepository<Location>, LocationRepository>();
+            services.AddTransient<ILocationLogic, LocationLogic>();
+
+            services.AddTransient<IRepository<Note>, NoteRepository>();
+            services.AddTransient<INoteLogic, NoteLogic>();
 
             services.AddControllers();
-            
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1",new OpenApiInfo{Title = "NoteDBApp.Endpoint", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NoteDBApp.Endpoint", Version = "v1" });
             });
         }
 
@@ -60,10 +62,7 @@ namespace GWVACB_HFT_2023241.Endpoint
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

@@ -6,23 +6,26 @@ using GWVACB_HFT_2023241.Repository;
 
 namespace GWVACB_HFT_2023241.Logic
 {
-    public class UserLogic:IUserLogic
+    public class UserLogic : IUserLogic
     {
-        private IRepository<User> repo;
+        private readonly IRepository<User> repo;
 
         public UserLogic(IRepository<User> repo)
         {
             this.repo = repo;
         }
-        
+
         public void Create(User user)
         {
-            if(user.Username.Length<3)
+            if (user.Username.Length < 3)
                 throw new ArgumentException("Username must be at least 3 characters long");
-            if( repo.GetAll().FirstOrDefault(u=>user.Username.Equals(user.Username,StringComparison.OrdinalIgnoreCase))==null)
+            if (repo.GetAll()
+                    .FirstOrDefault(u => user.Username.Equals(user.Username, StringComparison.OrdinalIgnoreCase)) ==
+                null)
                 throw new ArgumentException("Username already exists");
             repo.Create(user);
         }
+
         public User GetByName(string username)
         {
             return repo.GetAll().FirstOrDefault(u => u.Username == username);
@@ -52,6 +55,7 @@ namespace GWVACB_HFT_2023241.Logic
         {
             return repo.Read(id);
         }
+
         public void Update(User user)
         {
             repo.Update(user);

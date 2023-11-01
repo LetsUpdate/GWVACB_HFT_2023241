@@ -1,5 +1,5 @@
-﻿using GWVACB_HFT_2023241.Models;
-using System.Linq;
+﻿using System.Linq;
+using GWVACB_HFT_2023241.Models;
 
 namespace GWVACB_HFT_2023241.Repository
 {
@@ -18,7 +18,5 @@ namespace GWVACB_HFT_2023241.Repository
         {
             _UpdateHelper(entity, entity.Id);
         }
-
     }
-
 }
