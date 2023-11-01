@@ -24,9 +24,9 @@ namespace GWVACB_HFT_2023241.Test
             mockUserRepo = new Mock<IRepository<User>>();
             var inputdata = new List<User>()
             {
-                new User { UserId = 1, Username = "admin", Age = 10, School = "BME", Country = "Hungary" },
-                new User { UserId = 2, Username = "red", Age = 20, School = "OE", Country = "Hungary" },
-                new User { UserId = 3, Username = "Jozsi", Age = 21, School = "SOTE", Country = "Hungary" }
+                new User { Id = 1, Username = "admin", Age = 10, School = "BME", Country = "Hungary" },
+                new User { Id = 2, Username = "red", Age = 20, School = "OE", Country = "Hungary" },
+                new User { Id = 3, Username = "Jozsi", Age = 21, School = "SOTE", Country = "Hungary" }
             };
             mockUserRepo.Setup(x => x.GetAll()).Returns(inputdata.AsQueryable());
             
@@ -37,7 +37,7 @@ namespace GWVACB_HFT_2023241.Test
         [Test]
         public void CreateExistingUserTest()
         {
-            var user = new User { UserId = 4, Username = "Jozsi", Age = 21, School = "SOTE", Country = "Hungary" };
+            var user = new User { Id = 4, Username = "Jozsi", Age = 21, School = "SOTE", Country = "Hungary" };
             Assert.Throws<ArgumentException>(() => ul.Create(user));
             
         }
@@ -59,7 +59,7 @@ namespace GWVACB_HFT_2023241.Test
         [Test]
         public void CreateUserWithDifrentCases()
         {
-            var user =new User { UserId = 1, Username = "aDMIn", Age = 10, School = "BME", Country = "Hungary" };
+            var user =new User { Id = 1, Username = "aDMIn", Age = 10, School = "BME", Country = "Hungary" };
             Assert.Throws<ArgumentException>(() => ul.Create(user));
         }
         [Test]

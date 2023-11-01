@@ -14,12 +14,12 @@ namespace GWVACB_HFT_2023241.Repository
 
         public override Note Read(int id)
         {
-            return _ctx.Notes.FirstOrDefault(x => x.NoteId == id);
+            return _ctx.Notes.FirstOrDefault(x => x.Id == id);
         }
 
         public override void Update(Note entity)
         {
-            _UpdateHelper(entity, entity.NoteId);
+            _UpdateHelper(entity, entity.Id);
         }
 
     }

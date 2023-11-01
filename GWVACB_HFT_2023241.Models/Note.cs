@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public  class Note
+    public  class Note:BaseModel
     {
         
         public Note()
         {
         }
 
-        public Note(int noteId, int userId,string title,string content,int locationId)
+        public Note(int id, int userId,string title,string content,int locationId)
         {
-            NoteId = noteId;
+            Id = id;
             Title = title;
             Content = content;
             UserId = userId;
@@ -27,7 +27,7 @@ namespace GWVACB_HFT_2023241.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int NoteId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(500, MinimumLength = 9)]
@@ -48,7 +48,7 @@ namespace GWVACB_HFT_2023241.Models
 
         public override string ToString()
         {
-            return "NoteId: " + NoteId + ", Content: " + Content + ", UserId: " + UserId;
+            return "NoteId: " + Id + ", Content: " + Title + ", UserId: " + UserId;
         }
     }
 }

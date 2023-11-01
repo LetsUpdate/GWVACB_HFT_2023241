@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public  class Location
+    public  class Location:BaseModel
     {
-        public Location(int locationId,string country, string street, double avgTemp, string description)
+        public Location(int id,string country, string street, double avgTemp, string description)
         {
-            LocationId = locationId;
+            Id = id;
             Country = country;
             Street = street;
             AvgTemp = avgTemp;
@@ -23,7 +23,7 @@ namespace GWVACB_HFT_2023241.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int LocationId { get; set; }
+        public int Id { get; set; }
         
         [StringLength(20)]
         public string Country { get; set; }
@@ -36,7 +36,13 @@ namespace GWVACB_HFT_2023241.Models
         public string Description { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Note> Notes{get;set;}
+        public virtual 
+            ICollection<Note> Notes{get;set;}
+
+        public override string ToString()
+        {
+            return "LocationId: " + Id + ", Country: " + Country + ", Street: " + Street;
+        }
 
 
     }

@@ -19,7 +19,7 @@ namespace GWVACB_HFT_2023241.Logic
         {
             if(user.Username.Length<3)
                 throw new ArgumentException("Username must be at least 3 characters long");
-            if( repo.GetAll().Select(u => u.Username).Contains(user.Username, StringComparer.OrdinalIgnoreCase))
+            if( repo.GetAll().FirstOrDefault(u=>user.Username.Equals(user.Username,StringComparison.OrdinalIgnoreCase))==null)
                 throw new ArgumentException("Username already exists");
             repo.Create(user);
         }

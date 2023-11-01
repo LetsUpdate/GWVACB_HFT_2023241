@@ -27,6 +27,7 @@ namespace GWVACB_HFT_2023241.Endpoint
             services.AddTransient<IUserLogic, UserLogic>();
 
             services.AddControllers();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1",new OpenApiInfo{Title = "NoteDBApp.Endpoint", Version = "v1"});

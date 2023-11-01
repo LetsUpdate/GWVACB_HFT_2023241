@@ -28,7 +28,7 @@ namespace GWVACB_HFT_2023241.Repository
         {
             modelBuilder.Entity<User>().HasMany<Note>(Note => Note.Notes)
                 .WithOne(User => User.User)
-                .HasForeignKey(Note => Note.NoteId);
+                .HasForeignKey(Note => Note.Id);
 
             modelBuilder.Entity<Note>().HasOne<User>(User => User.User)
                 .WithMany(Note => Note.Notes)
@@ -39,15 +39,15 @@ namespace GWVACB_HFT_2023241.Repository
                 .HasForeignKey(note => note.LocationId);
             modelBuilder.Entity<Location>().HasMany<Note>(location => location.Notes)
                 .WithOne(note => note.Location)
-                .HasForeignKey(note => note.NoteId);
+                .HasForeignKey(note => note.Id);
 
             modelBuilder.Entity<User>().HasData(new User[]
             {
-                new User { UserId = 1, Username = "Jani", Age = 10, School = "OE", Country = "Hungary" },
-                new User { UserId = 2, Username = "Jozsi", Age = 25, School = "MIT", Country = "USA" },
-                new User { UserId = 3, Username = "Laci", Age = 30, School = "Oxford", Country = "UK" },
-                new User { UserId = 4, Username = "Robs", Age = 18, School = "Harvard", Country = "USA" },
-                new User { UserId = 5, Username = "Bibor", Age = 22, School = "Stanford", Country = "USA" }
+                new User { Id = 1, Username = "Jani", Age = 10, School = "OE", Country = "Hungary" },
+                new User { Id = 2, Username = "Jozsi", Age = 25, School = "MIT", Country = "USA" },
+                new User { Id = 3, Username = "Laci", Age = 30, School = "Oxford", Country = "UK" },
+                new User { Id = 4, Username = "Robs", Age = 18, School = "Harvard", Country = "USA" },
+                new User { Id = 5, Username = "Bibor", Age = 22, School = "Stanford", Country = "USA" }
             });
             //kreatív Jegyzetek kereatív nevekkel
             modelBuilder.Entity<Note>().HasData(new Note[]

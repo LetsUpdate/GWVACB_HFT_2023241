@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public  class User
+    public  class User:BaseModel
     {
-        public User(int userId, string username, int age, string school, string country)
+        public User(int id, string username, int age, string school, string country)
         {
-            UserId = userId;
+            Id = id;
             Username = username;
             Age = age;
             School = school;
@@ -27,7 +27,7 @@ namespace GWVACB_HFT_2023241.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        public int Id { get; set; }
         
         [Required]
         [StringLength(16, MinimumLength = 3)]
@@ -41,6 +41,10 @@ namespace GWVACB_HFT_2023241.Models
         public string Country { get; set; }
         [JsonIgnore]
         public virtual ICollection<Note> Notes { get; set; }
-        
+
+        public override string ToString()
+        {
+            return $"{nameof(Id)}: {Id}, {nameof(Username)}: {Username}, {nameof(Age)}: {Age}, {nameof(School)}: {School}, {nameof(Country)}: {Country}";
+        }
     }
 }

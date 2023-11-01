@@ -11,12 +11,12 @@ namespace GWVACB_HFT_2023241.Repository
 
         public override User Read(int id)
         {
-            return _ctx.Users.FirstOrDefault(x => x.UserId == id);
+            return _ctx.Users.FirstOrDefault(x => x.Id == id);
         }
 
         public override void Update(User entity)
         {
-            _UpdateHelper(entity, entity.UserId);
+            _UpdateHelper(entity, entity.Id);
         }
 
     }

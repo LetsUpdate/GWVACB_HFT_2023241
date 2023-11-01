@@ -21,7 +21,7 @@ namespace GWVACB_HFT_2023241.Repository
 
         public void Delete(int id)
         {
-            _ctx.Set<T>().Remove(Read(id));
+            _ctx.Remove(Read(id));
             _ctx.SaveChanges();
         }
 

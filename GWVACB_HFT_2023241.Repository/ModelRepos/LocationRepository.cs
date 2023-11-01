@@ -11,12 +11,12 @@ namespace GWVACB_HFT_2023241.Repository
 
         public override Location Read(int id)
         {
-            return _ctx.Locations.FirstOrDefault(x => x.LocationId == id);
+            return _ctx.Locations.FirstOrDefault(x => x.Id == id);
         }
 
         public override void Update(Location entity)
         {
-            _UpdateHelper(entity, entity.LocationId);
+            _UpdateHelper(entity, entity.Id);
         }
 
     }
