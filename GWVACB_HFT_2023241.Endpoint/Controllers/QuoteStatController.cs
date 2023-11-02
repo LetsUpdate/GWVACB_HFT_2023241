@@ -11,11 +11,11 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
 {
     [Route("[controller]/[Action]")]
     [ApiController]
-    public class StatController : ControllerBase
+    public class QuoteStatController : ControllerBase
     {
         IQuoteLogic _logic;
 
-        public StatController(IQuoteLogic logic)
+        public QuoteStatController(IQuoteLogic logic)
         {
             _logic = logic;
         }
@@ -27,12 +27,8 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
             return _logic.GetMostPopularQuote();
         }
 
-        //Stats of quotes
-        [HttpGet]
-        public List<NameValue> GetQuoteCountByAuthor()
-        {
-            return _logic.GetQuoteCountByAuthor();
-        }
+       
 
-}
+
+    }
 }

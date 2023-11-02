@@ -10,6 +10,6 @@ namespace GWVACB_HFT_2023241.Logic
         List<Quote> ListQuotesByauthor(int authorId);
 
         NameValue GetMostPopularQuote();
-        List<NameValue> GetQuoteCountByAuthor();
+        
     }
 }

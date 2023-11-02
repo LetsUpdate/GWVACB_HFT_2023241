@@ -25,32 +25,6 @@ namespace GWVACB_HFT_2023241.Logic
                 throw new ArgumentException("Name already exists");
             repo.Create(author);
         }
-
-        public Author GetByName(string authorname)
-        {
-            return repo.GetAll().FirstOrDefault(u => u.Name == authorname);
-        }
-
-        public bool IsauthorExists(string authorname)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Quote> GetauthorQuotes(int authorID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CreateQuote(int authorID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteauthorQuotes(int authorID)
-        {
-            throw new NotImplementedException();
-        }
-
         public Author GetById(int id)
         {
             return repo.Read(id);
@@ -69,6 +43,25 @@ namespace GWVACB_HFT_2023241.Logic
         public IQueryable<Author> GetAll()
         {
             return repo.GetAll();
+        }
+
+        public List<NameValue> GetQuoteCountByAuthor()
+        {
+            return repo.GetAll().Select(s => new NameValue() { Name = s.Name, Value = s.Quotes.Count }).ToList();
+        }
+
+        public List<Quote> GetOldestAuthorQuotes()
+        {
+            return repo.GetAll().FirstOrDefault(author => author.Age==repo.GetAll().Max(m=>m.Age))?.Quotes.ToList();
+        }
+        public Author GetAuthorWithMostWords()
+        {
+            return repo.GetAll().OrderByDescending(o => o.Quotes.Sum(s => s.Content.Length)).FirstOrDefault();
+        }
+
+        public List<NameValue> GetAvgQuoteLengthByAuthor()
+        {
+            return repo.GetAll().Select(s=>new NameValue(){Name = s.Name, Value = (int)s.Quotes.Average(a=>a.Content.Length)}).ToList();
         }
     }
 }

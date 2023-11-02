@@ -36,18 +36,18 @@ namespace GWVACB_HFT_2023241.Repository
             modelBuilder.Entity<Quote>().HasData(
                 new Quote(1, 1, "On Life", "The soul becomes dyed with the color of its thoughts."),
                 new Quote(2, 2, "On Time", "We suffer more often in imagination than in reality."),
-                new Quote(3, 3, "On Happiness", "He is a wise man who does not grieve for the things which he has not, but rejoices for those which he has."),
+                new Quote(3, 2, "On Happiness", "He is a wise man who does not grieve for the things which he has not, but rejoices for those which he has."),
                 new Quote(4, 4, "On Strength", "What really frightens and dismays us is not external events themselves, but the way in which we think about them."),
-                new Quote(5, 5, "On Virtue", "No man is free who is not master of himself."),
+                new Quote(5, 2, "On Virtue", "No man is free who is not master of himself."),
                 new Quote(6, 1, "On the Mind", "You have power over your mind - not outside events. Realize this, and you will find strength."),
                 new Quote(7, 2, "On Wisdom", "True happiness is... to enjoy the present, without anxious dependence upon the future."),
-                new Quote(8, 3, "On Adversity", "Difficulties strengthen the mind, as labor does the body."),
+                new Quote(8, 2, "On Adversity", "Difficulties strengthen the mind, as labor does the body."),
                 new Quote(9, 4, "On Fear", "He who fears death will never do anything worth of a man who is alive."),
                 new Quote(10, 5, "On Virtue", "A gem cannot be polished without friction, nor a man perfected without trials."),
                 new Quote(11, 1, "On Perception", "The universe is change; our life is what our thoughts make it."),
-                new Quote(12, 2, "On Anger", "Anger, if not restrained, is frequently more hurtful to us than the injury that provokes it."),
+                new Quote(12, 3, "On Anger", "Anger, if not restrained, is frequently more hurtful to us than the injury that provokes it."),
                 new Quote(13, 3, "On Contentment", "We should always be asking ourselves: Is this something that is, or is not, in my control?"),
-                new Quote(14, 4, "On Virtue", "Virtue is nothing else than right reason."),
+                new Quote(14, 5, "On Virtue", "Virtue is nothing else than right reason."),
                 new Quote(15, 5, "On Philosophy", "Philosophy does not promise to secure anything external for a man, otherwise it would be admitting something that lies beyond its proper subject-matter."));
             modelBuilder.Entity<Comment>().HasData(
                 new Comment(1, "This is an insightful quote.", 1),

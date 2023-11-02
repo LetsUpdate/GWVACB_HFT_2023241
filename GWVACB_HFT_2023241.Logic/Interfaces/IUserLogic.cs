@@ -5,10 +5,9 @@ namespace GWVACB_HFT_2023241.Logic
 {
     public interface IauthorLogic : ICrudLogic<Author>
     {
-        public Author GetByName(string authorname);
-        public bool IsauthorExists(string authorname);
-        public List<Quote> GetauthorQuotes(int authorID);
-        public void CreateQuote(int authorID);
-        public void DeleteauthorQuotes(int authorID);
+        List<NameValue> GetQuoteCountByAuthor();
+        List<Quote> GetOldestAuthorQuotes();
+        public Author GetAuthorWithMostWords();
+        List<NameValue> GetAvgQuoteLengthByAuthor();
     }
 }
