@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public class User : BaseModel
+    public class User : IBaseModel
     {
         public User(int id, string username, int age, string school, string country)
         {

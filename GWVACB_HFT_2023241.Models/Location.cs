@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public class Location : BaseModel
+    public class Location : IBaseModel
     {
         public Location(int id, string country, string street, double avgTemp, string description)
         {

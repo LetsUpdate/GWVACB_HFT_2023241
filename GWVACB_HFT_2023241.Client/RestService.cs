@@ -147,7 +147,7 @@ namespace GWVACB_HFT_2023241.Client
         }
     }
 
-    public class RestExceptionInfo
+    public class RestExceptionInfo : Exception
     {
         public string Msg { get; set; }
     }

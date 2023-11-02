@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public class Note : BaseModel
+    public class Note : IBaseModel
     {
         public Note()
         {

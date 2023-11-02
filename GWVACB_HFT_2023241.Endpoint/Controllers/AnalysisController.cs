@@ -20,9 +20,9 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
             _logic = logic;
         }
         [HttpGet]
-        public List<NameVaule> GetNoteCountByUser()
+        public List<NameValue> GetNoteCountByUser()
         {
-            throw new NotImplementedException();
+            return _logic.GetNoteCountByUser();
         }
     }
 }

@@ -5,7 +5,7 @@ using GWVACB_HFT_2023241.Models;
 
 namespace GWVACB_HFT_2023241.Client
 {
-    public class CrudMenu<T> where T : BaseModel
+    public class CrudMenu<T> where T : IBaseModel
     {
         public static void Show(RestService rest)
         {
