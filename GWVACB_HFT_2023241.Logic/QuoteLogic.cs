@@ -50,5 +50,17 @@ namespace GWVACB_HFT_2023241.Logic
         {
             return GetAll().Where(n=>n.Author.Id == authorId).ToList();
         }
+        
+
+        public NameValue GetMostPopularQuote()
+        {
+            return GetAll().Select(s => new NameValue() { Name = s.Title, Value = s.Comments.Count }).OrderByDescending(o => o.Value).FirstOrDefault();
+        }
+
+        public List<NameValue> GetQuoteCountByAuthor()
+        {
+            return GetAll().Select(quote => new NameValue{Name = quote.Author.Name, Value = quote.Comments.Count}).ToList();
+        }
+        
     }
 }
