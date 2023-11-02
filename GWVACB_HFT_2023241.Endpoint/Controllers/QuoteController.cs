@@ -7,45 +7,45 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class QuoteController : ControllerBase
     {
-        private readonly IUserLogic _logic;
+        private readonly IQuoteLogic _logic;
 
-        public UserController(IUserLogic logic)
+        public QuoteController(IQuoteLogic logic)
         {
             _logic = logic;
         }
 
-        // GET: api/User
+        // GET: api/Quote
         [HttpGet]
-        public IEnumerable<User> Get()
+        public IEnumerable<Quote> Get()
         {
             return _logic.GetAll();
         }
 
-        // GET: api/User/5
+        // GET: api/Quote/5
         [HttpGet("{id}")]
-        public User Get(int id)
+        public Quote Get(int id)
         {
             return _logic.GetById(id);
         }
 
 
-        // POST: api/User
+        // POST: api/Quote
         [HttpPost]
-        public void Create([FromBody] User user)
+        public void Create([FromBody] Quote author)
         {
-            _logic.Create(user);
+            _logic.Create(author);
         }
 
-        // PUT: api/User/5
+        // PUT: api/Quote/5
         [HttpPut]
-        public void Update([FromBody] User u)
+        public void Update([FromBody] Quote u)
         {
             _logic.Update(u);
         }
 
-        // DELETE: api/User/5
+        // DELETE: api/Quote/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

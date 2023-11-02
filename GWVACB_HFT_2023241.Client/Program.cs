@@ -11,7 +11,7 @@ namespace GWVACB_HFT_2023241.Client
 
         private static void Main(string[] args)
         {
-            _rest = new RestService("http://localhost:5005/", "User");
+            _rest = new RestService("http://localhost:5005/", "Author");
 
             var mainMenu = new ConsoleMenu(args, 0)
                 .Add("Login", () => Login())
@@ -24,9 +24,9 @@ namespace GWVACB_HFT_2023241.Client
         private static void DevMode()
         {
             new ConsoleMenu()
-                .Add("User", () => CrudMenu<User>.Show(_rest))
-                .Add("Note", () => CrudMenu<Note>.Show(_rest))
-                .Add("Location", () => CrudMenu<Note>.Show(_rest))
+                .Add("Author", () => CrudMenu<Author>.Show(_rest))
+                .Add("Quote", () => CrudMenu<Quote>.Show(_rest))
+                .Add("Comment", () => CrudMenu<Quote>.Show(_rest))
                 .Add("Back", ConsoleMenu.Close)
                 .Show();
         }
@@ -42,7 +42,7 @@ namespace GWVACB_HFT_2023241.Client
             Console.Write("Username: ");
             var uname = Console.ReadLine()?.Trim();
             try{
-                var response = _rest.Get<User>($"User/{uname}");
+                var response = _rest.Get<Author>($"Author/{uname}");
             }
             catch (RestExceptionInfo e)
             {

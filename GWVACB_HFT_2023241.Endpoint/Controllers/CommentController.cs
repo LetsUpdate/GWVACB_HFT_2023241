@@ -7,49 +7,50 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class NoteController : ControllerBase
+    public class CommentController : ControllerBase
     {
-        private readonly INoteLogic _logic;
+        private readonly ICommentLogic _logic;
 
-        public NoteController(INoteLogic logic)
+        public CommentController(ICommentLogic logic)
         {
             _logic = logic;
         }
 
-        // GET: api/Note
+        // GET: api/Comment
         [HttpGet]
-        public IEnumerable<Note> Get()
+        public IEnumerable<Comment> Get()
         {
             return _logic.GetAll();
         }
 
-        // GET: api/Note/5
+        // GET: api/Comment/5
         [HttpGet("{id}")]
-        public Note Get(int id)
+        public Comment Get(int id)
         {
             return _logic.GetById(id);
         }
 
 
-        // POST: api/Note
+        // POST: api/Comment
         [HttpPost]
-        public void Create([FromBody] Note user)
+        public void Create([FromBody] Comment author)
         {
-            _logic.Create(user);
+            _logic.Create(author);
         }
 
-        // PUT: api/Note/5
+        // PUT: api/Comment/5
         [HttpPut]
-        public void Update([FromBody] Note u)
+        public void Update([FromBody] Comment u)
         {
             _logic.Update(u);
         }
 
-        // DELETE: api/Note/5
+        // DELETE: api/Comment/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             _logic.Delete(id);
         }
     }
+    
 }

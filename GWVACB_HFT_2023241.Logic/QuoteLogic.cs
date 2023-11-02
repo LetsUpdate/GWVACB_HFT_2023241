@@ -6,26 +6,26 @@ using GWVACB_HFT_2023241.Repository;
 
 namespace GWVACB_HFT_2023241.Logic
 {
-    public class NoteLogic : INoteLogic
+    public class QuoteLogic : IQuoteLogic
     {
-        private readonly IRepository<Note> repo;
+        private readonly IRepository<Quote> repo;
 
-        public NoteLogic(IRepository<Note> repo)
+        public QuoteLogic(IRepository<Quote> repo)
         {
             this.repo = repo;
         }
 
-        public void Create(Note note)
+        public void Create(Quote quote)
         {
-            repo.Create(note);
+            repo.Create(quote);
         }
 
-        public void Update(Note note)
+        public void Update(Quote quote)
         {
-            repo.Update(note);
+            repo.Update(quote);
         }
 
-        public Note GetById(int id)
+        public Quote GetById(int id)
         {
             return repo.Read(id);
         }
@@ -35,20 +35,20 @@ namespace GWVACB_HFT_2023241.Logic
             repo.Delete(id);
         }
 
-        public IQueryable<Note> GetAll()
+        public IQueryable<Quote> GetAll()
         {
             return repo.GetAll();
         }
 
-        public List<NameValue> GetNoteCountByUser()
+        public List<NameValue> GetQuoteCountByauthor()
         {
-            return GetAll().GroupBy(g => g.User.Username)
+            return GetAll().GroupBy(g => g.Author.Name)
                 .Select(s => new NameValue() { Name = s.Key, Value = s.Count() }).ToList();
         }
 
-        public List<Note> ListNotesByUser(int userId)
+        public List<Quote> ListQuotesByauthor(int authorId)
         {
-            return GetAll().Where(n=>n.User.Id == userId).ToList();
+            return GetAll().Where(n=>n.Author.Id == authorId).ToList();
         }
     }
 }

@@ -17,22 +17,22 @@ namespace GWVACB_HFT_2023241.Endpoint
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<NoteDbContext>();
+            services.AddTransient<QuoteDbContext>();
 
-            services.AddTransient<IRepository<User>, UserRepository>();
-            services.AddTransient<IUserLogic, UserLogic>();
+            services.AddTransient<IRepository<Author>, AuthorRepository>();
+            services.AddTransient<IauthorLogic, AuthorLogic>();
             
-            services.AddTransient<IRepository<Location>, LocationRepository>();
-            services.AddTransient<ILocationLogic, LocationLogic>();
+            services.AddTransient<IRepository<Comment>, CommentRepository>();
+            services.AddTransient<ICommentLogic, CommentLogic>();
 
-            services.AddTransient<IRepository<Note>, NoteRepository>();
-            services.AddTransient<INoteLogic, NoteLogic>();
+            services.AddTransient<IRepository<Quote>, QuoteRepository>();
+            services.AddTransient<IQuoteLogic, QuoteLogic>();
 
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NoteDBApp.Endpoint", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "QuoteDBApp.Endpoint", Version = "v1" });
             });
         }
 

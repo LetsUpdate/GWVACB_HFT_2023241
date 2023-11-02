@@ -4,9 +4,9 @@ namespace GWVACB_HFT_2023241.Logic
 {
     public interface ICrudLogic<T>
     {
-        public void Create(T note);
+        public void Create(T Quote);
 
-        public void Update(T note);
+        public void Update(T Quote);
 
         public T GetById(int id);
 

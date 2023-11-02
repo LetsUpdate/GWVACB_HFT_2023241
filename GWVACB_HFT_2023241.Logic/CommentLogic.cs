@@ -4,26 +4,26 @@ using GWVACB_HFT_2023241.Repository;
 
 namespace GWVACB_HFT_2023241.Logic
 {
-    public class LocationLogic:ILocationLogic
+    public class CommentLogic:ICommentLogic
     {
-        private IRepository<Location> repo;
+        private IRepository<Comment> repo;
 
-        public LocationLogic(IRepository<Location> repo)
+        public CommentLogic(IRepository<Comment> repo)
         {
             this.repo = repo;
         }
 
-        public void Create(Location note)
+        public void Create(Comment Quote)
         {
-            repo.Create(note);
+            repo.Create(Quote);
         }
 
-        public void Update(Location note)
+        public void Update(Comment Quote)
         {
-            repo.Update(note);
+            repo.Update(Quote);
         }
 
-        public Location GetById(int id)
+        public Comment GetById(int id)
         {
             return repo.Read(id);
         }
@@ -33,7 +33,7 @@ namespace GWVACB_HFT_2023241.Logic
             repo.Delete(id);
         }
 
-        public IQueryable<Location> GetAll()
+        public IQueryable<Comment> GetAll()
         {
             return repo.GetAll();
         }

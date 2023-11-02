@@ -5,32 +5,29 @@ using System.Text.Json.Serialization;
 
 namespace GWVACB_HFT_2023241.Models
 {
-    public class User : IBaseModel
+    public class Author : IBaseModel
     {
-        public User(int id, string username, int age, string school, string country)
+        public Author(int id, string name, int age, string country)
         {
             Id = id;
-            Username = username;
+            Name = name;
             Age = age;
-            School = school;
             Country = country;
         }
 
-        public User()
+        public Author()
         {
         }
 
         [Required]
         [StringLength(16, MinimumLength = 3)]
-        public string Username { get; set; }
+        public string Name { get; set; }
 
         [Range(5, 128)] public int Age { get; set; }
-
-        [StringLength(64, MinimumLength = 3)] public string School { get; set; }
-
+        
         [StringLength(16, MinimumLength = 2)] public string Country { get; set; }
 
-        [JsonIgnore] public virtual ICollection<Note> Notes { get; set; }
+        [JsonIgnore] public virtual ICollection<Quote> Quotes { get; set; }
 
 
         [Key]
@@ -40,7 +37,7 @@ namespace GWVACB_HFT_2023241.Models
         public override string ToString()
         {
             return
-                $"{nameof(Id)}: {Id}, {nameof(Username)}: {Username}, {nameof(Age)}: {Age}, {nameof(School)}: {School}, {nameof(Country)}: {Country}";
+                $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Age)}: {Age}, {nameof(Country)}: {Country}";
         }
     }
 }

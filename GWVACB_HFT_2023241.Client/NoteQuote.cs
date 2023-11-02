@@ -4,21 +4,21 @@ using GWVACB_HFT_2023241.Models;
 
 namespace GWVACB_HFT_2023241.Client
 {
-    public class NoteClient
+    public class QuoteQuote
     {
-        private User _user;
+        private Author _author;
         private RestService _service;
-        private NoteClient(RestService service, User user)
+        private QuoteQuote(RestService service, Author author)
         {
             _service = service;
-            _user = user;
+            _author = author;
         }
 
         public static void LogIn(RestService service)
         {
             Console.WriteLine("Ad meg a neved: ");
             string name = Console.ReadLine();
-            var user = service.GetSingle<User>("notebook/login/" + name);
+            var author = service.GetSingle<Author>("Quotebook/login/" + name);
         }
     }
 }

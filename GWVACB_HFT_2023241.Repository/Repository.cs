@@ -4,9 +4,9 @@ namespace GWVACB_HFT_2023241.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        protected NoteDbContext _ctx;
+        protected QuoteDbContext _ctx;
 
-        public Repository(NoteDbContext dbContext)
+        public Repository(QuoteDbContext dbContext)
         {
             _ctx = dbContext;
         }
