@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using GWVACB_HFT_2023241.Models;
 using GWVACB_HFT_2023241.Repository;
@@ -13,14 +14,16 @@ namespace GWVACB_HFT_2023241.Logic
             this.repo = repo;
         }
 
-        public void Create(Comment Quote)
+        public void Create(Comment comment)
         {
-            repo.Create(Quote);
+            if (comment.Content.Length is < 3 or > 20)
+                throw new ArgumentException("Content must be between 3 and 20 characters");
+            repo.Create(comment);
         }
 
-        public void Update(Comment Quote)
+        public void Update(Comment comment)
         {
-            repo.Update(Quote);
+            repo.Update(comment);
         }
 
         public Comment GetById(int id)

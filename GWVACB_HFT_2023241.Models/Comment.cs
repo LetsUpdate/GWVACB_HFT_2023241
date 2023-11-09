@@ -12,9 +12,11 @@ namespace GWVACB_HFT_2023241.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [StringLength(20)]  string Content { get; set; }
+        [StringLength(20,MinimumLength = 3)]
+        public string Content { get; set; }
         
         [ForeignKey(nameof(Quote))]
+        [Required]
         public int QuoteId { get; set; }
 
   
@@ -23,6 +25,12 @@ namespace GWVACB_HFT_2023241.Models
         public Comment(int id, string content, int quoteId)
         {
             Id = id;
+            Content = content;
+            QuoteId = quoteId;
+        }
+
+        public Comment(string content, int quoteId)
+        {
             Content = content;
             QuoteId = quoteId;
         }
