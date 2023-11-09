@@ -5,9 +5,9 @@ namespace GWVACB_HFT_2023241.Logic
 {
     public interface IQuoteLogic : ICrudLogic<Quote>
     {
-        List<NameValue> GetQuoteCountByauthor();
+        List<NameValue> GetQuoteCountByAuthor();
 
-        List<Quote> ListQuotesByauthor(int authorId);
+        List<Quote> ListQuotesByAuthor(int authorId);
 
         NameValue GetMostPopularQuote();
         

@@ -17,6 +17,10 @@ namespace GWVACB_HFT_2023241.Logic
 
         public void Create(Quote quote)
         {
+            if(quote.Title.Length is <1 or>20)
+                throw new ArgumentException("Title must be between 1 and 20 characters");
+            if(quote.Content.Length is<9 or>500)
+                throw new ArgumentException("Content must be between 10 and 500 characters");
             repo.Create(quote);
         }
 
@@ -40,13 +44,13 @@ namespace GWVACB_HFT_2023241.Logic
             return repo.GetAll();
         }
 
-        public List<NameValue> GetQuoteCountByauthor()
+        public List<NameValue> GetQuoteCountByAuthor()
         {
             return GetAll().GroupBy(g => g.Author.Name)
                 .Select(s => new NameValue() { Name = s.Key, Value = s.Count() }).ToList();
         }
 
-        public List<Quote> ListQuotesByauthor(int authorId)
+        public List<Quote> ListQuotesByAuthor(int authorId)
         {
             return GetAll().Where(n=>n.Author.Id == authorId).ToList();
         }

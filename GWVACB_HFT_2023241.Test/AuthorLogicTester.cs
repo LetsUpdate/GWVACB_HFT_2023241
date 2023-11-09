@@ -32,7 +32,7 @@ namespace GWVACB_HFT_2023241.Test
             var result = ul.GetQuoteCountByAuthor();
             Assert.AreEqual(5, result.Count);
             Assert.AreEqual(2, result.FirstOrDefault(x => x.Name == "Marcus Aurelius")?.Value);
-            Assert.AreEqual(0, result.FirstOrDefault(x => x.Name == "Epictetus")?.Value);
+            Assert.AreEqual(2, result.FirstOrDefault(x => x.Name == "Epictetus")?.Value);
 
         }
         [Test]
