@@ -17,25 +17,53 @@ namespace GWVACB_HFT_2023241.Client
                     try
                     {
                         obj = ModelHelper<T>.CreateObject();
+                        rest.Post(obj, endpoint);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine("somehting went wrong");
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
-                        return;
                     }
-
-                    rest.Post(obj, endpoint);
                 })
                 .Add("ReadAll", () => ShowList(rest.Get<T>(endpoint)))
-                //.Add("Update", () => Update(type))
+                .Add("Update", () => Update(rest))
                 .Add("Delete", () =>
-                    Selector(rest.Get<T>(endpoint), id => rest.Delete(id, endpoint), "Select item to delete"))
+                    Selector(rest.Get<T>(endpoint), id => rest.Delete(id.Id, endpoint), "Select item to delete"))
                 .Add("Back", ConsoleMenu.Close).Show();
         }
 
-        private static void Selector(List<T> list, Action<int> action, string title)
+        private static void Update(RestService rest)
+        {
+            try
+            {
+                Selector(rest.Get<T>(typeof(T).Name), o =>
+                {
+                   o =ModelHelper<T>.UpdateObject(o);
+                   rest.Put(o,typeof(T).Name);
+                },"Select item to Update");
+            }catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("somehting went wrong");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+
+
+        private static void Selector(List<T> list, Action<T> action, string title)
         {
             var menu = new ConsoleMenu();
             menu.Configure(config => { config.Title = title; });
@@ -43,7 +71,7 @@ namespace GWVACB_HFT_2023241.Client
             foreach (var item in list)
                 menu.Add(item.ToString()!, () =>
                 {
-                    action(item.Id);
+                    action(item);
                     menu.CloseMenu();
                 });
             menu.Show();

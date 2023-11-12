@@ -36,7 +36,9 @@ namespace GWVACB_HFT_2023241.Repository
         protected void _UpdateHelper(T entity, int id)
         {
             var old = Read(id);
-            foreach (var prop in old.GetType().GetProperties()) prop.SetValue(old, prop.GetValue(entity));
+            foreach (var prop in old.GetType().GetProperties()) 
+                if((prop.GetGetMethod() != null && prop.GetGetMethod()!.IsVirtual)==false)
+                prop.SetValue(old, prop.GetValue(entity));
             _ctx.SaveChanges();
         }
     }

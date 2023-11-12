@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace GWVACB_HFT_2023241.Client
 {
@@ -41,6 +42,37 @@ namespace GWVACB_HFT_2023241.Client
             return instance;
         }
 
+        private static T _UpdateObject(T o)
+        {
+            Console.WriteLine("To use current value just press enter!");
+            Type t = o.GetType();
+            foreach (var prop in t.GetProperties())
+            {
+                if (prop.Name.ToLower().Contains(t.Name.ToLower() + "id")) continue;
+                if (prop.GetGetMethod() != null && prop.GetGetMethod()!.IsVirtual) continue;
+                Console.Write($"{prop.Name} ({prop.GetValue(o)}): ");
+                string newval = Console.ReadLine()??"";
+                
+                if (newval.Length > 0)
+                {
+                    if (prop.PropertyType == typeof(string))
+                    {
+                        prop.SetValue(o,newval);
+                    }
+                    else
+                    {
+                        var propType = prop.PropertyType;
+                        var parseMethod = propType.GetMethods().First(t => t.Name.Contains("Parse"));
+                        var converted = parseMethod.Invoke(null, new object[] { o });
+                        prop.SetValue(o, converted);
+                    }
+                }
+               
+            }
+
+            return o;
+        }
+
         public static T CreateObject()
         {
             return (T)_RecordObject(typeof(T));
@@ -48,7 +80,7 @@ namespace GWVACB_HFT_2023241.Client
 
         public static T UpdateObject(T obj)
         {
-            return (T)_RecordObject(typeof(T));
+            return _UpdateObject(obj);
         }
     }
 }

@@ -70,7 +70,7 @@ namespace GWVACB_HFT_2023241.Test
             { 
             }catch(Exception e)
             {
-               // Assert.Fail();
+               Assert.Fail();
             }
 
             mockauthorRepo.Verify(x => x.Create(author), Times.Never);
