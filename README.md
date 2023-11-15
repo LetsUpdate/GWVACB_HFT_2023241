@@ -1,38 +1,47 @@
 # GWVACB_HFT_2023241
 
-## Áttekintés
+## Introduction
 
-Ez a projekt egy olyan alkalmazás, amely egy ASP.NET Core alapú REST API-t tartalmaz, amelyhez kapcsolódik egy egyszerű konzolos menüfelülettel rendelkező kliensalkalmazás. Az alkalmazás rétegei között szerepelnek a Repository, Logic, Test, Endpoint, Client és Model rétegek.
+This repository consists of several layers, each serving a specific role in the overall functionality of the application. The layers include Repository, Logic, Test, Endpoint, Client, and Model.
 
-## Rétegek
+## Layers
 
-Az alkalmazás különböző rétegekből áll, amelyek különféle felelősségi területeket fednek le:
+### 1. Repository
 
-1. **Repository**: Az ASP.NET Core REST API rétege, amely az adatokat kezeli és kiszolgálja.
+The Repository layer is built on ASP Core and serves as the REST API for the project. It handles data storage and retrieval, providing a seamless interface for interacting with the underlying database.
 
-2. **Logic**: Az alkalmazás üzleti logikáját tartalmazza, ami az adatok feldolgozásáért és az üzleti szabályok végrehajtásáért felelős.
+### 2. Logic
 
-3. **Test**: A tesztek rétege, amely lefedi az összes létrehozási (create) és nem CRUD (create, read, update, delete) műveletet.
+[Provide a brief description of the Logic layer and its role in the project. This could include any business logic, data processing, or other essential functionalities.]
 
-4. **Endpoint**: Az API végpontokat definiálja, amelyek a kliens és a szerver közötti kommunikációt biztosítják.
+### 3. Test
 
-5. **Client**: Az egyszerű konzolos menüfelülettel rendelkező kliensalkalmazás, amely lehetővé teszi a CRUD és nem CRUD műveletek elérését az API végponton keresztül. A kommunikáció JSON alapú és HTTP protokollt használ.
+The Test layer is crucial for ensuring the reliability and robustness of the application. It covers all create and non-CRUD methods, validating that each component performs as expected.
 
-6. **Model**: Az adatmodell rétege, amely a használt adatstruktúrákat és entitásokat tartalmazza.
+### 4. Endpoint
 
-## Adatbázis
+The Endpoint layer is responsible for exposing the functionalities of the system to external entities. It uses HTTP communication and JSON-based data exchange to facilitate seamless integration with other services.
 
-Az adatbázis három táblát tartalmaz:
+### 5. Client
 
-1. **Author**: Az írókat reprezentáló tábla, amely tartalmazza az azonosítót, nevet, kort és országot.
+The Client layer offers a Simple Console Menu interface, providing users with access to CRUD and non-CRUD methods exposed by the Endpoint. Communication between the client and the endpoint is JSON-based and occurs over HTTP.
 
-2. **Quote**: Az idézeteket reprezentáló tábla, amely tartalmazza az azonosítót, az író azonosítóját, a címet és a tartalmat.
+### 6. Model
 
-3. **Comment**: A kommenteket reprezentáló tábla, amely tartalmazza az azonosítót, a tartalmat és az idézet azonosítóját.
+The Model layer defines the structure of the data within the system. It includes entities such as Author, Quote, and Comment, each with specific attributes to capture relevant information.
 
-## Tesztek
+## Database Structure
 
-A projekt teljes körű tesztelést tartalmaz, amely lefedi az összes létrehozási (create) és nem CRUD műveletet, biztosítva ezzel az alkalmazás megbízhatóságát és funkcionalitását.
+The database utilized by the application comprises three main tables:
+
+1. **Author**
+    - Fields: id (int), name (string), age (int), country (string)
+
+2. **Quote**
+    - Fields: id (int), authorId (int), title (string), content (string)
+
+3. **Comment**
+    - Fields: id (int), content (string), quoteId (int)
 
 ---
-A projekt egy féléves házi feladat  Haladó Fejlesztés Techinikák tárgyra. A projektet készítette: **Tánczos János** (GWVACB)
+Made by: **Tánczos János** (GWVACB) for HFT
