@@ -20,11 +20,11 @@ namespace GWVACB_HFT_2023241.Models
         }
 
         [Required]
-        [StringLength(500, MinimumLength = 9)]
+        [StringLength(500)]
         public string Content { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 1)]
+        [StringLength(20)]
         public string Title { get; set; }
 
         [Required] 
