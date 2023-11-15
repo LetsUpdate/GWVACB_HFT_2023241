@@ -2,6 +2,8 @@
 
 ## Introduction
 
+> The projects goal was to show a small layered applications structure, from the frontend to the backend.
+
 This repository consists of several layers, each serving a specific role in the overall functionality of the application. The layers include Repository, Logic, Test, Endpoint, Client, and Model.
 
 ## Layers
