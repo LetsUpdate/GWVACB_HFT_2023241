@@ -33,6 +33,26 @@ namespace GWVACB_HFT_2023241.Client
                     }
                 })
                 .Add("ReadAll", () => ShowList(rest.Get<T>(endpoint)))
+                .Add("GetById", () =>
+                {
+                    Console.WriteLine("ID?:  ");
+                    int id = int.Parse(Console.ReadLine());
+                    try
+                    {
+                        var res = rest.Get<T>(id, endpoint);
+                        if(res==null)
+                            Console.WriteLine($"id: ({id}) not found!");
+                        else
+                            Console.WriteLine(rest.ToString());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    Console.WriteLine("press any key to continue...");
+                    Console.ReadKey();
+                })
                 .Add("Update", () => Update(rest))
                 .Add("Delete", () =>
                     Selector(rest.Get<T>(endpoint), id => rest.Delete(id.Id, endpoint), "Select item to delete"))

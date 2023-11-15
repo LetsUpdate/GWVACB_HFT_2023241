@@ -44,7 +44,7 @@ namespace GWVACB_HFT_2023241.Models
 
         public override string ToString()
         {
-            return "QuoteId: " + Id + ", Content: " + Title + ", AuthorId: " + AuthorId;
+            return "QuoteId: " + Id + ", Title: " + Title + ", AuthorId: " + AuthorId;
         }
     }
 }

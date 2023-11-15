@@ -63,7 +63,7 @@ namespace GWVACB_HFT_2023241.Client
                     {
                         var propType = prop.PropertyType;
                         var parseMethod = propType.GetMethods().First(t => t.Name.Contains("Parse"));
-                        var converted = parseMethod.Invoke(null, new object[] { o });
+                        var converted = parseMethod.Invoke(null, new object[] { newval });
                         prop.SetValue(o, converted);
                     }
                 }
