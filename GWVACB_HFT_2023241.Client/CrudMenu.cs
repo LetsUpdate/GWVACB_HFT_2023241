@@ -74,6 +74,7 @@ namespace GWVACB_HFT_2023241.Client
                     action(item);
                     menu.CloseMenu();
                 });
+            menu.Add("Back", ConsoleMenu.Close);
             menu.Show();
         }
 
