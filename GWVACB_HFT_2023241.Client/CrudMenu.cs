@@ -36,14 +36,14 @@ namespace GWVACB_HFT_2023241.Client
                 .Add("GetById", () =>
                 {
                     Console.WriteLine("ID?:  ");
-                    int id = int.Parse(Console.ReadLine());
                     try
                     {
+                        int id = int.Parse(Console.ReadLine());
                         var res = rest.Get<T>(id, endpoint);
                         if(res==null)
-                            Console.WriteLine($"id: ({id}) not found!");
+                            Console.WriteLine($"id: ({id}15) not found!");
                         else
-                            Console.WriteLine(rest.ToString());
+                            Console.WriteLine(res.ToString());
                     }
                     catch (Exception e)
                     {
