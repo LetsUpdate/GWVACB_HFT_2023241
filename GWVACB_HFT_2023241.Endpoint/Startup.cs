@@ -1,3 +1,4 @@
+using GWVACB_HFT_2023241.Endpoint.Services;
 using GWVACB_HFT_2023241.Logic;
 using GWVACB_HFT_2023241.Models;
 using GWVACB_HFT_2023241.Repository;
@@ -27,7 +28,7 @@ namespace GWVACB_HFT_2023241.Endpoint
 
             services.AddTransient<IRepository<Quote>, QuoteRepository>();
             services.AddTransient<IQuoteLogic, QuoteLogic>();
-
+            services.AddSignalR();
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -67,7 +68,11 @@ namespace GWVACB_HFT_2023241.Endpoint
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => { 
+                endpoints.MapControllers();
+
+                endpoints.MapHub<SignalRHub>("/hub");
+            });
         }
     }
 }
