@@ -21,7 +21,7 @@ namespace GWVACB_HFT_2023241.Endpoint
 
             services.AddTransient<IRepository<Author>, AuthorRepository>();
             services.AddTransient<IauthorLogic, AuthorLogic>();
-            
+
             services.AddTransient<IRepository<Comment>, CommentRepository>();
             services.AddTransient<ICommentLogic, CommentLogic>();
 
@@ -45,6 +45,11 @@ namespace GWVACB_HFT_2023241.Endpoint
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MovieDbApp.Endpoint v1"));
             }
+            app.UseCors(builder => builder
+                           .AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .WithOrigins("http://localhost:4830"));
 
             app.UseRouting();
 
