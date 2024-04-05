@@ -50,8 +50,8 @@ function display() {
                 <td>${quote.content}</td>
                 <td>${quote.authorId}</td>
                 <td>
-                    <button type="button" onclick="removeQuote(${quote.id})">Delete</button>
-                    <button type="button" onclick="prepareUpdate(${quote.id}, '${quote.title}', '${quote.content}', ${quote.authorId})">Update</button>
+                    <button type="button" class="btn btn-danger" onclick="removeQuote(${quote.id})">Delete</button>
+                    <button type="button" class="btn btn-secondary" onclick="prepareUpdate(${quote.id}, '${quote.title}', '${quote.content}', ${quote.authorId})">Update</button>
                 </td>
             </tr>`;
     });

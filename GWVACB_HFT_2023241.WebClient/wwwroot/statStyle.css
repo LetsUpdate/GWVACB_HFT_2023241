@@ -54,3 +54,29 @@ h1 {
         padding: 15px;
     }
 }
+
+/* Egyéni gomb stílusok */
+.btn {
+    border-radius: 5px; /* Kerekített sarkok */
+    padding: 10px 15px; /* Nagyobb padding a szélesebb gombokért */
+    font-size: 16px; /* Nagyobb betűméret a jobb olvashatóságért */
+    transition: all 0.2s ease-in-out; /* Sima átmenet effektus */
+}
+
+.btn:hover, .btn:focus {
+    transform: scale(1.05); /* Kis méret növekedés hover esetén */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Árnyék hozzáadása a kiemelésért */
+}
+
+.btn-primary {
+    border: 0; /* Eltávolítjuk a keretet a jobb megjelenés érdekében */
+}
+
+/* Specifikus stílusok a különböző gomb színekhez */
+.btn-danger:hover {
+    background-color: #dc3545;
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+}

@@ -47,8 +47,8 @@ function display() {
     authors.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             `<tr><td>${t.id}</td><td>${t.name}</td><td>${t.age}</td><td>${t.country || ''}</td><td>` +
-            `<button type="button" onclick="removeAuthor(${t.id})">Delete</button>` +
-            `<button type="button" onclick="prepareUpdate(${t.id}, '${t.name}', ${t.age}, '${t.country || ''}')">Update</button>` +
+            `<button type="button" class="btn btn-danger" onclick="removeAuthor(${t.id})">Delete</button>` +
+            `<button type="button" class="btn btn-secondary" onclick="prepareUpdate(${t.id}, '${t.name}', ${t.age}, '${t.country || ''}')">Update</button>` +
             `</td></tr>`;
     });
 }

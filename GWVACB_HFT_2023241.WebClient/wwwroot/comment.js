@@ -49,8 +49,8 @@ function display() {
                 <td>${comment.content}</td>
                 <td>${comment.quoteId}</td>
                 <td>
-                    <button type="button" onclick="removeComment(${comment.id})">Delete</button>
-                    <button type="button" onclick="prepareUpdate(${comment.id}, '${comment.content}', ${comment.quoteId})">Update</button>
+                    <button type="button" class="btn btn-danger" onclick="removeComment(${comment.id})">Delete</button>
+                    <button type="button" class="btn btn-secondary" onclick="prepareUpdate(${comment.id}, '${comment.content}', ${comment.quoteId})">Update</button>
                 </td>
             </tr>`;
     });
