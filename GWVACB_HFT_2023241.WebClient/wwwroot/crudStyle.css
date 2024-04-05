@@ -8,13 +8,13 @@ body {
     margin-bottom: 20px;
 }
 
-    /* Az input mezők és gombok méretének és marginjának beállítása */
-    #formdiv input[type="text"],
-    #formdiv input[type="number"],
-    #formdiv button {
-        margin: 5px 0;
-        width: 100%;
-    }
+/* Az input mezők és gombok méretének és marginjának beállítása */
+#formdiv input[type="text"],
+#formdiv input[type="number"],
+#formdiv button {
+    margin: 5px 0;
+    width: 100%;
+}
 
 /* Az add author gomb kiemelése */
 #authoractionbutton {
@@ -25,9 +25,9 @@ body {
     cursor: pointer;
 }
 
-    #authoractionbutton:hover {
-        background-color: #0056b3;
-    }
+#authoractionbutton:hover {
+    background-color: #0056b3;
+}
 
 /* Táblázat stílusának testreszabása a Bootstrap osztályokkal együtt */
 table {
@@ -64,7 +64,7 @@ button {
         margin-bottom: 10px;
     }
 
-        #formdiv input, #formdiv button {
-            margin: 3px 0;
-        }
+    #formdiv input, #formdiv button {
+        margin: 3px 0;
+    }
 }

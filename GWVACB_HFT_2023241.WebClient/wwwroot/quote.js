@@ -74,7 +74,7 @@ function createQuote() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ title, content, authorId: parseInt(authorId, 10) })
+        body: JSON.stringify({title, content, authorId: parseInt(authorId, 10)})
     }).then(response => {
         if (response.ok) {
             getData();
@@ -88,7 +88,9 @@ function prepareUpdate(id, title, content, authorId) {
     document.getElementById('quoteauthorid').value = authorId;
     const button = document.getElementById('quoteactionbutton');
     button.innerText = 'Update Quote';
-    button.onclick = function () { updateQuote(id); };
+    button.onclick = function () {
+        updateQuote(id);
+    };
 }
 
 function updateQuote(id) {
@@ -101,7 +103,7 @@ function updateQuote(id) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id, title, content, authorId: parseInt(authorId, 10) })
+        body: JSON.stringify({id, title, content, authorId: parseInt(authorId, 10)})
     }).then(response => {
         if (response.ok) {
             getData();

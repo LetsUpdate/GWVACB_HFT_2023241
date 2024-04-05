@@ -72,7 +72,7 @@ function createComment() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ content, quoteId: parseInt(quoteId, 10) })
+        body: JSON.stringify({content, quoteId: parseInt(quoteId, 10)})
     }).then(response => {
         if (response.ok) {
             getData();
@@ -85,7 +85,9 @@ function prepareUpdate(id, content, quoteId) {
     document.getElementById('commentquoteid').value = quoteId;
     const button = document.getElementById('commentactionbutton');
     button.innerText = 'Update Comment';
-    button.onclick = function () { updateComment(id); };
+    button.onclick = function () {
+        updateComment(id);
+    };
 }
 
 function updateComment(id) {
@@ -97,7 +99,7 @@ function updateComment(id) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id, content, quoteId: parseInt(quoteId, 10) })
+        body: JSON.stringify({id, content, quoteId: parseInt(quoteId, 10)})
     }).then(response => {
         if (response.ok) {
             getData();

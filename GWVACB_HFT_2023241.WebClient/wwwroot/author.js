@@ -76,8 +76,8 @@ function createAuthor() {
     if (actionButton.textContent.includes('Add')) {
         fetch('http://localhost:5005/Author', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify({ name, age: parseInt(age), country })
+            headers: {'Content-Type': 'application/json',},
+            body: JSON.stringify({name, age: parseInt(age), country})
         })
             .then(response => response)
             .then(data => {
@@ -116,8 +116,8 @@ function updateAuthor() {
     };
 
     fetch('http://localhost:5005/Author', {
-        method: 'PUT', 
-        headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(author)
     })
         .then(response => response)

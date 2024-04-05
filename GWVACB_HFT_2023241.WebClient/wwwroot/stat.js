@@ -5,6 +5,28 @@ async function loadAuthorStats() {
     await loadOldestAuthorQuotes();
     await loadAuthorWithMostWords();
     await loadAvgQuoteLengthByAuthor();
+    await loadQuoteCountByAuthor();
+    statsDiv.innerHTML += '<h2>Quote Statistics</h2>';
+    await loadMostPopularQuote();
+}
+
+async function loadMostPopularQuote() {
+    try {
+        const response = await fetch('http://localhost:5005/QuoteStat/GetMostPopularQuote');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const quoteStat = await response.json();
+        let content = '<h3>Most popular quote</h3><ul>';
+
+        content += `<li>"${quoteStat.name}" - ${quoteStat.value}</li>`;
+
+        content += '</ul>';
+        document.getElementById('authorStats').innerHTML += content;
+    } catch (error) {
+        console.error('Error fetching the most popular quote:', error);
+        document.getElementById('authorStats').innerHTML = '<p>There was an error loading the most popular quote.</p>';
+    }
 }
 
 async function loadOldestAuthorQuotes() {
@@ -32,6 +54,7 @@ async function loadAuthorWithMostWords() {
         console.error('Error fetching author with most words:', error);
     }
 }
+
 async function loadQuoteCountByAuthor() {
     try {
         const response = await fetch('http://localhost:5005/AuthorStat/GetQuoteCountByAuthor');
