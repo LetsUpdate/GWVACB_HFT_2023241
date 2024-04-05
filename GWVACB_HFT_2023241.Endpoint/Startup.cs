@@ -50,7 +50,7 @@ namespace GWVACB_HFT_2023241.Endpoint
                             .AllowCredentials()
                             .AllowAnyMethod()
                             .AllowAnyHeader()
-                            .WithOrigins("http://localhost:5000"));
+                            .WithOrigins("http://localhost:5006"));
 
             app.UseRouting();
 
