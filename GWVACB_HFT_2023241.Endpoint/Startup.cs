@@ -47,10 +47,10 @@ namespace GWVACB_HFT_2023241.Endpoint
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MovieDbApp.Endpoint v1"));
             }
             app.UseCors(builder => builder
-                           .AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader()
-                           .WithOrigins("http://localhost:4830"));
+                            .AllowCredentials()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .WithOrigins("http://localhost:5000"));
 
             app.UseRouting();
 
