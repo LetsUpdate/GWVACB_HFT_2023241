@@ -16,13 +16,15 @@ namespace GWVACB_HFT_2023241.Logic
 
         public void Create(Comment comment)
         {
-            if (comment.Content.Length is < 3 or > 20)
+            if (comment.Content.Length is < 3 or > 100)
                 throw new ArgumentException("Content must be between 3 and 20 characters");
             repo.Create(comment);
         }
 
         public void Update(Comment comment)
         {
+            if (comment.Content.Length is < 3 or > 100)
+                throw new ArgumentException("Content must be between 3 and 20 characters");
             repo.Update(comment);
         }
 

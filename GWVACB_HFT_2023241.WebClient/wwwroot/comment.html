@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Catalog</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="crudStyle.css">
+</head>
+<body>
+    <h1>Comment Catalog</h1>
+
+    <div id="formdiv">
+        <label>Content:</label>
+        <input type="text" id="commentcontent" />
+        <label>Quote ID:</label>
+        <input type="number" id="commentquoteid" />
+        <button type="button" id="commentactionbutton" onclick="createComment()">Add Comment</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>Quote ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="comment.js"></script>
+</body>
+</html>

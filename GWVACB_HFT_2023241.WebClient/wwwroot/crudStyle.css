@@ -1,0 +1,70 @@
+﻿/* Alap test stílus, hogy egy kis légteret adjon az oldal szélei körül */
+body {
+    padding: 20px;
+}
+
+/* Formázási stílusok a form div-hez, hogy középre helyezze az elemeket */
+#formdiv {
+    margin-bottom: 20px;
+}
+
+    /* Az input mezők és gombok méretének és marginjának beállítása */
+    #formdiv input[type="text"],
+    #formdiv input[type="number"],
+    #formdiv button {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+/* Az add author gomb kiemelése */
+#authoractionbutton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+    #authoractionbutton:hover {
+        background-color: #0056b3;
+    }
+
+/* Táblázat stílusának testreszabása a Bootstrap osztályokkal együtt */
+table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Gombok stílusának testreszabása */
+button {
+    margin-left: 5px;
+}
+
+/* Responszivitás */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #formdiv {
+        margin-bottom: 10px;
+    }
+
+        #formdiv input, #formdiv button {
+            margin: 3px 0;
+        }
+}

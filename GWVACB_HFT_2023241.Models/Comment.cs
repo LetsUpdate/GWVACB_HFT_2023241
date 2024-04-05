@@ -12,7 +12,7 @@ namespace GWVACB_HFT_2023241.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [StringLength(20)]
+        [StringLength(100)]
         public string Content { get; set; }
         
         [ForeignKey(nameof(Quote))]

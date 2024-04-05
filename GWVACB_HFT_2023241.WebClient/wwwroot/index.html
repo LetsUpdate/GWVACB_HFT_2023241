@@ -1,38 +1,40 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Author Catalog</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .btn-lg {
+            padding: 20px 40px;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Author Catalog</h1>
-
-    <div id="formdiv">
-        <label>Name:</label>
-        <input type="text" id="authorname" />
-        <label>Age:</label>
-        <input type="number" id="authorage" />
-        <label>Country:</label>
-        <input type="text" id="authorcountry" />
-        <button type="button" id="authoractionbutton" onclick="createAuthor()">Add Author</button>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center mt-5">
+                <h1>Welcome to Our Website</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col centered">
+                <a href="author.html" class="btn btn-primary btn-lg mb-3">Author</a>
+                <a href="quote.html" class="btn btn-primary btn-lg mb-3">Quote</a>
+                <a href="comment.html" class="btn btn-primary btn-lg">Comment</a>
+            </div>
+        </div>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Country</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="resultarea">
-        </tbody>
-    </table>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-    <script src="author.js"></script>
 </body>
 </html>
