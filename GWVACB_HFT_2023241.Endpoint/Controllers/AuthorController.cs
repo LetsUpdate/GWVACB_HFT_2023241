@@ -47,10 +47,10 @@ namespace GWVACB_HFT_2023241.Endpoint.Controllers
 
         // PUT: api/Author/5
         [HttpPut]
-        public void Update([FromBody] Author u)
+        public void Update([FromBody] Author author)
         {
-            _logic.Update(u);
-            _hub.Clients.All.SendAsync("AuthorUpdated", u);
+            _logic.Update(author);
+            _hub.Clients.All.SendAsync("AuthorUpdated", author);
         }
 
         // DELETE: api/Author/5
