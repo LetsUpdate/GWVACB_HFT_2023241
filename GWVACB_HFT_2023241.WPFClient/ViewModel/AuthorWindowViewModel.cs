@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace GWVACB_HFT_2023241.WPFClient
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class AuthorWindowViewModel : ObservableRecipient
     {
         public RestCollection<Author> Authors
         {
@@ -42,7 +42,7 @@ namespace GWVACB_HFT_2023241.WPFClient
         public ICommand UpdateAuthorCommand { get; set; }
         public ICommand DeleteAuthorCommand { get; set; }
 
-        public MainWindowViewModel()
+        public AuthorWindowViewModel()
         {
             Authors = new RestCollection<Author>("http://localhost:5005/", "Author","hub");
 

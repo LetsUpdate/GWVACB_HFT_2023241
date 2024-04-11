@@ -10,18 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GWVACB_HFT_2023241.WPFClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Authorindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CommentWindow : Window
     {
-        public MainWindow()
+        public CommentWindow()
         {
             InitializeComponent();
         }
+
     }
 }
