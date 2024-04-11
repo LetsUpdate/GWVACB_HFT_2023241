@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace GWVACB_HFT_2023241.WPFClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MenuWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MenuWindow : Window
     {
-        public MainWindow()
+        public MenuWindow()
         {
             InitializeComponent();
         }

@@ -14,41 +14,47 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <!-- Fejléc hozzáadása a mezőnevekkel -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Header row -->
+            <RowDefinition Height="*"/>
+            <!-- Content row for ListBox to enable scrolling -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" >
             <StackPanel Orientation="Horizontal" Margin="5" Background="LightGray">
                 <TextBlock Text="Comment" Width="250"/>
                 <TextBlock Text="QuoteID" Width="50"/>
-
             </StackPanel>
-
-            <!-- Lista a szerzők adataival -->
-            <ListBox ItemsSource="{Binding Comments}" SelectedItem="{Binding SelectedAuthor}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="{Binding Content}" Grid.Column="0" Width="250"/>
-                            <TextBlock Text="{Binding QuoteId}" Grid.Column="1" Width="20"/>
-                        </Grid>
-
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1">
+        <!-- Comments ListBox -->
+        <ListBox Grid.Row="1" ItemsSource="{Binding Comments}" SelectedItem="{Binding SelectedComment}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Content}" Grid.Column="0" Width="250"/>
+                        <TextBlock Text="{Binding QuoteId}" Grid.Column="1" Width="50"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Right Panel -->
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
             <Label Content="Comment" Padding="10"/>
             <TextBox Text="{Binding SelectedComment.Content}" Margin="10"/>
             <Label Content="QuoteID" Padding="10"/>
             <TextBox Text="{Binding SelectedComment.QuoteId}" Margin="10"/>
-            <Button Content="Create Comment" Command="{Binding CreateAuthorCommand}" Margin="10" Padding="10" Background="LightGreen"/>
-            <Button Content="Update Comment" Command="{Binding UpdateAuthorCommand}" Margin="10" Padding="10" Background="Orange"/>
-            <Button Content="Delete Comment" Command="{Binding DeleteAuthorCommand}" Margin="10" Padding="10" Background="Red"/>
+            <Button Content="Create Comment" Command="{Binding CreateCommentCommand}" Margin="10" Padding="10" Background="LightGreen"/>
+            <Button Content="Update Comment" Command="{Binding UpdateCommentCommand}" Margin="10" Padding="10" Background="Orange"/>
+            <Button Content="Delete Comment" Command="{Binding DeleteCommentCommand}" Margin="10" Padding="10" Background="Red"/>
         </StackPanel>
     </Grid>
 </Window>

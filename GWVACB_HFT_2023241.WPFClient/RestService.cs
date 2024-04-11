@@ -17,7 +17,9 @@ public class RestService
 {
     HttpClient client;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public RestService(string baseurl, string pingableEndpoint = "swagger")
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
         bool isOk = false;
         do
@@ -94,7 +96,9 @@ public class RestService
 
     public async Task<T> GetSingleAsync<T>(string endpoint)
     {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         T item = default(T);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
         HttpResponseMessage response = await client.GetAsync(endpoint);
         if (response.IsSuccessStatusCode)
         {
@@ -110,7 +114,9 @@ public class RestService
 
     public T GetSingle<T>(string endpoint)
     {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         T item = default(T);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
         HttpResponseMessage response = client.GetAsync(endpoint).GetAwaiter().GetResult();
         if (response.IsSuccessStatusCode)
         {
@@ -126,7 +132,9 @@ public class RestService
 
     public async Task<T> GetAsync<T>(int id, string endpoint)
     {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         T item = default(T);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
         HttpResponseMessage response = await client.GetAsync(endpoint + "/" + id.ToString());
         if (response.IsSuccessStatusCode)
         {
@@ -142,7 +150,9 @@ public class RestService
 
     public T Get<T>(int id, string endpoint)
     {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         T item = default(T);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
         HttpResponseMessage response = client.GetAsync(endpoint + "/" + id.ToString()).GetAwaiter().GetResult();
         if (response.IsSuccessStatusCode)
         {
@@ -241,7 +251,9 @@ public class RestService
 }
 public class RestExceptionInfo
 {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public RestExceptionInfo()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
 
     }
@@ -286,7 +298,13 @@ class NotifyService
         bool hasSignalR;
         Type type = typeof(T);
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public RestCollection(string baseurl, string endpoint, string hub = null)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             hasSignalR = hub != null;
             this.rest = new RestService(baseurl, endpoint);
@@ -295,12 +313,18 @@ class NotifyService
                 this.notify = new NotifyService(baseurl + hub);
                 this.notify.AddHandler<T>(type.Name + "Created", (T item) =>
                 {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     items.Add(item);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                     CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
                 });
                 this.notify.AddHandler<T>(type.Name + "Deleted", (T item) =>
                 {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8604 // Possible null reference argument.
                     var element = items.FirstOrDefault(t => t.Equals(item));
+#pragma warning restore CS8604 // Possible null reference argument.
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                     if (element != null)
                     {
                         items.Remove(item);
@@ -308,18 +332,24 @@ class NotifyService
                     }
                     else
                     {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                         Init();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                     }
 
                 });
                 this.notify.AddHandler<T>(type.Name + "Updated", (T item) =>
                 {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                     Init();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 });
 
                 this.notify.Init();
             }
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             Init();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         private async Task Init()
@@ -350,7 +380,9 @@ class NotifyService
         {
             if (hasSignalR)
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 this.rest.PostAsync(item, typeof(T).Name);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }
             else
             {
@@ -372,7 +404,9 @@ class NotifyService
         {
             if (hasSignalR)
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 this.rest.PutAsync(item, typeof(T).Name);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }
             else
             {
@@ -393,7 +427,9 @@ class NotifyService
         {
             if (hasSignalR)
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 this.rest.DeleteAsync(id, typeof(T).Name);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             }
             else
             {

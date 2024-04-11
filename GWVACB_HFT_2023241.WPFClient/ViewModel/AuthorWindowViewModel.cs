@@ -33,8 +33,12 @@ namespace GWVACB_HFT_2023241.WPFClient
                 };
                 OnPropertyChanged();
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 (DeleteAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 (UpdateAuthorCommand as RelayCommand).NotifyCanExecuteChanged();
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
             }
         }
