@@ -16,6 +16,9 @@ function setupSignalR() {
     connection.on("AuthorDeleted", (user, message) => {
         getData();
     });
+    connection.on("AuthorUpdated", (user, message) => {
+        getData();
+    });
 
     connection.onclose(async () => {
         await start();

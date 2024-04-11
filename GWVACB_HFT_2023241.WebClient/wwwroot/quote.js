@@ -16,6 +16,9 @@ function setupSignalR() {
     connection.on("QuoteDeleted", function () {
         getData();
     });
+    connection.on("QuoteUpdated", function () {
+        getData();
+    });
 
     connection.onclose(async () => {
         await start();

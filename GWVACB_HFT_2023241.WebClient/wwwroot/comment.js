@@ -16,6 +16,9 @@ function setupSignalR() {
     connection.on("CommentDeleted", function () {
         getData();
     });
+    connection.on("CommentUpdated", function () {
+        getData();
+    });
 
     connection.onclose(async () => {
         await start();
