@@ -9,17 +9,21 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("AuthorCreated", (user, message) => {
-        getData();
-    });
-
-    connection.on("AuthorDeleted", (user, message) => {
-        getData();
-    });
-    connection.on("AuthorUpdated", (user, message) => {
-        getData();
-    });
-
+connection.on("AuthorCreated", ( message) => {
+    authors.push(message)
+    display();
+});connection.on("AuthorDeleted", ( message) => {
+    const deletedAuthorId = message.id;
+    authors = authors.filter(author => author.id !== deletedAuthorId);
+    display();
+});connection.on("AuthorUpdated", ( message) => {
+    const updatedAuthor = message;
+    const index = authors.findIndex(author => author.id === updatedAuthor.id);
+    if (index !== -1) {
+        authors[index] = updatedAuthor;
+        display();
+    }
+});
     connection.onclose(async () => {
         await start();
     });
@@ -63,7 +67,7 @@ function removeAuthor(id) {
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
-            getData();
+            
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -85,7 +89,7 @@ function createAuthor() {
             .then(response => response)
             .then(data => {
                 console.log('Success:', data);
-                getData();
+                
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -126,7 +130,7 @@ function updateAuthor() {
         .then(response => response)
         .then(data => {
             console.log('Success:', data);
-            getData(); // Refresh the authors list
+             // Refresh the authors list
             resetForm(); // Clear the form fields and reset the action button
         })
         .catch((error) => {

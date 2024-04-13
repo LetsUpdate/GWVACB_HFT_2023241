@@ -9,17 +9,26 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("QuoteCreated", function () {
-        getData();
-    });
+connection.on("QuoteCreated", function (message) {
+    const newQuote = message;
+    quotes.push(newQuote);
+    display();
+});
 
-    connection.on("QuoteDeleted", function () {
-        getData();
-    });
-    connection.on("QuoteUpdated", function () {
-        getData();
-    });
+connection.on("QuoteDeleted", function ( message) {
+    const deletedQuoteId = message.id;
+    quotes = quotes.filter(quote => quote.id !== deletedQuoteId);
+    display();
+});
 
+connection.on("QuoteUpdated", function ( message) {
+    const updatedQuote = message;
+    const index = quotes.findIndex(quote => quote.id === updatedQuote.id);
+    if (index !== -1) {
+        quotes[index] = updatedQuote;
+        display();
+    }
+});
     connection.onclose(async () => {
         await start();
     });
@@ -64,7 +73,7 @@ async function removeQuote(id) {
     await fetch(`http://localhost:5005/Quote/${id}`, {
         method: 'DELETE'
     });
-    getData();
+        
 }
 
 function createQuote() {
@@ -80,7 +89,7 @@ function createQuote() {
         body: JSON.stringify({title, content, authorId: parseInt(authorId, 10)})
     }).then(response => {
         if (response.ok) {
-            getData();
+       
         }
     });
 }
@@ -109,7 +118,7 @@ function updateQuote(id) {
         body: JSON.stringify({id, title, content, authorId: parseInt(authorId, 10)})
     }).then(response => {
         if (response.ok) {
-            getData();
+          
             resetForm();
         }
     });

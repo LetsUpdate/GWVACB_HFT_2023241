@@ -2,24 +2,34 @@ let comments = [];
 let connection = null;
 getData();
 setupSignalR();
-
+//IDK ez miért kell, de enélkül nem működik a createComment()
+resetForm();
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
         .withUrl("http://localhost:5005/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("CommentCreated", function () {
-        getData();
-    });
+connection.on("CommentCreated", function (message) {
+    const newComment = message;
+    comments.push(newComment);
+    display();
+});
 
-    connection.on("CommentDeleted", function () {
-        getData();
-    });
-    connection.on("CommentUpdated", function () {
-        getData();
-    });
+connection.on("CommentDeleted", function ( message) {
+    const deletedCommentId = message.id;
+    comments = comments.filter(comment => comment.id !== deletedCommentId);
+    display();
+});
 
+connection.on("CommentUpdated", function ( message) {
+    const updatedComment =message;
+    const index = comments.findIndex(comment => comment.id === updatedComment.id);
+    if (index !== -1) {
+        comments[index] = updatedComment;
+        display();
+    }
+});
     connection.onclose(async () => {
         await start();
     });
@@ -63,7 +73,7 @@ async function removeComment(id) {
     await fetch(`http://localhost:5005/Comment/${id}`, {
         method: 'DELETE'
     });
-    getData();
+    
 }
 
 function createComment() {
@@ -78,7 +88,7 @@ function createComment() {
         body: JSON.stringify({content, quoteId: parseInt(quoteId, 10)})
     }).then(response => {
         if (response.ok) {
-            getData();
+            
         }
     });
 }
@@ -105,7 +115,7 @@ function updateComment(id) {
         body: JSON.stringify({id, content, quoteId: parseInt(quoteId, 10)})
     }).then(response => {
         if (response.ok) {
-            getData();
+            
             resetForm();
         }
     });
