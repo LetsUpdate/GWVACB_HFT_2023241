@@ -35,7 +35,7 @@ namespace GWVACB_HFT_2023241.WPFClient
                         AuthorId = value.AuthorId
                                 
                     };  
-
+                    OnPropertyChanged();
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                     (DeleteQuoteCommand as RelayCommand).NotifyCanExecuteChanged();
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
@@ -56,7 +56,7 @@ namespace GWVACB_HFT_2023241.WPFClient
             CreateQuoteCommand = new RelayCommand(() =>
             {
 
-                Quotes.Add(new Quote() {Id = SelectedQuote.Id, Content = SelectedQuote.Content, Title = SelectedQuote.Title, AuthorId = SelectedQuote.AuthorId });
+                Quotes.Add(new Quote() { Content = SelectedQuote.Content, Title = SelectedQuote.Title, AuthorId = SelectedQuote.AuthorId });
             });
             DeleteQuoteCommand = new RelayCommand(() =>
             {

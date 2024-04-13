@@ -33,7 +33,8 @@ namespace GWVACB_HFT_2023241.WPFClient
                         Content = value.Content,
                         QuoteId = value.QuoteId
                                 
-                    };  
+                    };
+                    OnPropertyChanged();
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                     (DeleteCommentCommand as RelayCommand).NotifyCanExecuteChanged();
