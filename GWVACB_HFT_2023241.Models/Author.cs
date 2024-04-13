@@ -23,9 +23,9 @@ namespace GWVACB_HFT_2023241.Models
         [StringLength(16)]
         public string Name { get; set; }
 
-        [Range(5, 128)] public int Age { get; set; }
+        [Range(0, 128)] public int Age { get; set; }
         
-        [StringLength(16)] public string Country { get; set; }
+        [StringLength(20)] public string Country { get; set; }
 
         [JsonIgnore] public virtual ICollection<Quote> Quotes { get; set; }
 

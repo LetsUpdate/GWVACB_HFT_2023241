@@ -22,8 +22,17 @@ namespace GWVACB_HFT_2023241.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-   
-            
+            modelBuilder.Entity<Author>()
+    .HasMany(a => a.Quotes)
+    .WithOne(q => q.Author)
+    .HasForeignKey(q => q.AuthorId)
+    .OnDelete(DeleteBehavior.Cascade);
+
+modelBuilder.Entity<Quote>()
+    .HasMany(q => q.Comments)
+    .WithOne(c => c.Quote)
+    .HasForeignKey(c => c.QuoteId)
+    .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Author>().HasData(
                 new Author(1, "Marcus Aurelius", 65, "Rome"),
