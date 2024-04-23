@@ -57,4 +57,4 @@ The database supporting the application includes three main tables:
 
 ---
 
-**Developer:** Tánczos János (GWVACB) for HFT
+**Developer:** Tánczos János
